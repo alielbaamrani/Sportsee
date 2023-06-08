@@ -1,5 +1,5 @@
 import React from "react";
-import "../../utils/reset.scss";
+import "../../styles/reset.scss";
 
 function Home() {
   return <div>Home</div>;
