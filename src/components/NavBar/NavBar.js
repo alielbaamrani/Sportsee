@@ -1,10 +1,9 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import logo from "../../assets/logo.svg";
-import "./Header.scss"
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+import './NavBar.scss';
 
 export default function Header() {
-    
   return (
     <div className="Head">
       <img src={logo} alt="sportSee" aria-label="logo sportSee" />
@@ -16,5 +15,4 @@ export default function Header() {
       </nav>
     </div>
   );
-};
-
+}

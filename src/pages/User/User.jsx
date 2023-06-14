@@ -1,9 +1,29 @@
-import React from 'react'
+import React from "react";
+import UserInfo from "../../components/UserInfo/UserInfo";
+import BarCharts from "../../components/BarChart";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getData } from "../../utils/getData";
+import "./User.scss";
 
-function User() {
+export default function User() {
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const data = async () => {
+      const request = await getData("USER_MAIN_DATA", id);
+      if (!request) return alert("data error");
+      setData(request.data);
+    };
+    data();
+  }, [id]);
+  if (data.length === 0) return null;
+
   return (
-    <div>User</div>
-  )
+    <div className="userPage">
+      <UserInfo name={data.userInfos.firstName} />
+      <BarCharts/>
+    </div>
+  );
 }
-
-export default User
