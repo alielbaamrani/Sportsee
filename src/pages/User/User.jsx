@@ -4,6 +4,15 @@ import BarCharts from "../../components/BarChart";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getData } from "../../utils/getData";
+import {  BottomChart } from "../../styles/userStyle";
+// import caloriesIcon from "../../assets/calories-icon.svg";
+// import proteinsIcon from "../../assets/proteines-icon.svg";
+// import glucidesIcon from "../../assets/glucides-icon.svg";
+// import lipidesIcon from "../../assets/lipides-icon.svg";
+import ScoreChart from "../../components/ScoreChart";
+import UserAverageSessions from "../../components/UserAverageSession";
+import UserPerformance from "../../components/UserPerformance";
+
 import "./User.scss";
 
 export default function User() {
@@ -23,7 +32,12 @@ export default function User() {
   return (
     <div className="userPage">
       <UserInfo name={data.userInfos.firstName} />
-      <BarCharts/>
+      <BarCharts />
+      <BottomChart>
+        <UserAverageSessions />
+        <UserPerformance />
+        <ScoreChart data={data} />
+      </BottomChart>
     </div>
   );
 }
