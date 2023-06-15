@@ -1,14 +1,14 @@
 import React from "react";
-import "./UserInfo.scss";
+import { Container, UserName, Text } from "../styles/userInfo";
 
 function UserInfo({ name }) {
   return (
-    <div className="userInfo">
-      <h1>
-        Bonjour <span className="userName"> {name} </span>
-      </h1>
+    <Container>
+      <Text>
+        Bonjour <UserName> {name} </UserName>
+      </Text>
       <span>Félicitation ! Vous avez explosé vos objectifs hier 👏</span>
-    </div>
+    </Container>
   );
 }
 

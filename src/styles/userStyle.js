@@ -46,10 +46,10 @@ const Content = styled.div`
 `;
 
 const BottomChart = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2em;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+
 `;
 
 export { Main, Container, Content, BottomChart };

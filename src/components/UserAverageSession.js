@@ -55,12 +55,12 @@ export default function UserAverageSessions() {
     <Container>
       <Title>Durée moyenne des sessions</Title>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+        <LineChart className="Test"
           data={data}
           strokeWidth={1}
           onMouseMove={e => {
             if (e.isTooltipActive === true) {
-              let div = document.querySelector(".jhueTR");
+              let div = document.querySelector(".ezlkeI");
               let windowWidth = div.clientWidth;
               let mouseXpercentage = Math.round(
                 (e.activeCoordinate.x / windowWidth) * 100

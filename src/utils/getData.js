@@ -1,5 +1,4 @@
 /* eslint-disable default-case */
-//import { getUserActivity,getUserAverageSessions, getUserInfos, getUserPerformance, } from "./ApiCall";
 import {
   getUserActivity,
   getUserAverageSessions,

@@ -1,10 +1,9 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Header from "./components/NavBar/NavBar";
-import SideBar from "./components/SideBar/SideBar";
-import Home from "./pages/Home/Home";
-// import Error from "./pages/Error";
-import User from "./pages/User/User";
+import Header from "./components/NavBar";
+import SideBar from "./components/SideBar";
+import Home from "./pages/Home";
+import User from "./pages/User";
 
 export default function App() {
   return (
@@ -14,7 +13,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user/:id" element={<User />} />
-        {/* <Route path="*" element={<Error />} /> */}
       </Routes>
     </BrowserRouter>
   );
