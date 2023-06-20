@@ -1,10 +1,17 @@
 /* eslint-disable default-case */
+// import {
+//   getUserActivity,
+//   getUserAverageSessions,
+//   getUserInfos,
+//   getUserPerformance,
+// } from "./dataMocked";
+
 import {
   getUserActivity,
   getUserAverageSessions,
   getUserInfos,
   getUserPerformance,
-} from "./dataMocked";
+} from "./ApiCall";
 
 /**
  *
