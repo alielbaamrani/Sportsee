@@ -1,7 +1,6 @@
 import React from "react";
 import {Container, Title, Text, Score} from "../styles/scoreChartStyle"
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import PropTypes from "prop-types";
 
 
 /** create a PieChart with score value
@@ -48,7 +47,5 @@ import PropTypes from "prop-types";
   );
 }
 
-ScoreChart.propTypes = {
-  data: PropTypes.object,
-};
+
 

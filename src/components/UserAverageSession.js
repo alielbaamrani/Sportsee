@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Title } from "../styles/userAverageSessionStyle";
-import { getData } from "../utils/getData";
+import { API } from "../utils/getData";
 import { useParams } from "react-router";
 import {
   ResponsiveContainer,
@@ -23,28 +23,10 @@ export default function UserAverageSessions() {
 
   useEffect(() => {
     const data = async () => {
-      const request = await getData("USER_AVERAGE_SESSIONS", id);
+      const request = await API.getUserAverageSessions(id);
       if (!request) return alert("data error");
-      const formatData = request.data.sessions.map(data => {
-        switch (data.day) {
-          case 1:
-            return { ...data, day: "L" };
-          case 2:
-            return { ...data, day: "M" };
-          case 3:
-            return { ...data, day: "M" };
-          case 4:
-            return { ...data, day: "J" };
-          case 5:
-            return { ...data, day: "V" };
-          case 6:
-            return { ...data, day: "S" };
-          case 7:
-            return { ...data, day: "D" };
-          default:
-            return { ...data };
-        }
-      });
+      const formatData = request.sessions
+
       setData(formatData);
     };
     data();

@@ -3,7 +3,7 @@ import UserInfo from "../components/UserInfo";
 import BarCharts from "../components/BarChart";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getData } from "../utils/getData";
+import { API } from "../utils/getData";
 import { BottomChart } from "../styles/userStyle";
 import {
   UserPage,
@@ -26,7 +26,7 @@ export default function User() {
 
   useEffect(() => {
     const data = async () => {
-      const request = await getData("USER_MAIN_DATA", id);
+      const request = await API.getUserInfos(id);
       if (!request) return alert("data error");
       setData(request.data);
     };

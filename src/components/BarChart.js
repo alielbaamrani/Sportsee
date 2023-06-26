@@ -9,7 +9,7 @@ import {
   Info,
 } from "../styles/barChartStyle";
 import { useState, useEffect } from "react";
-import { getData } from "../utils/getData";
+import { API } from "../utils/getData";
 import { useParams } from "react-router";
 import {
   BarChart,
@@ -32,7 +32,7 @@ export default function BarCharts() {
 
   useEffect(() => {
     const data = async () => {
-      const request = await getData("USER_ACTIVITY", id);
+      const request = await API.getUserActivity(id);
       if (!request) return alert("data error");
 
       setData(request.data.sessions);

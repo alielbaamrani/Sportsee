@@ -20,6 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "mock": "cross-env PORT=8082 REACT_APP_ENVIRONMENT='mock' react-scripts start",
     "start": "cross-env PORT=8081 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
