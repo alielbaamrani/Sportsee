@@ -21,56 +21,73 @@ import Lipides from "../assets//lipides-icon.svg";
 import Proteines from "../assets/proteines-icon.svg";
 
 export default function User() {
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    const data = async () => {
-      const request = await API.getUserInfos(id);
-      if (!request) return alert("data error");
-      setData(request.data);
-    };
-    data();
+    fetchData();
   }, [id]);
-  if (data.length === 0) return null;
+
+  const fetchData = async () => {
+    try {
+      const data = async () => {
+        const response = await API.getUserInfos(id);
+        setData(response.data);
+        setIsLoading(false);
+      };
+      data();
+    } catch (error) {
+      console.log("Erreur lors de la récupération des données :", error);
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <UserPage>
-      <UserInfo name={data.userInfos.firstName} />
-      <ContainerRow>
-        <Container>
-          <BarCharts />
-          <BottomChart>
-            <UserAverageSessions />
-            <UserPerformance />
-            <ScoreChart data={data} />
-          </BottomChart>
-        </Container>
-        <Container>
-          <KeyDatas>
-            <KeyData
-              icon={Calories}
-              quantity={`${data.keyData.calorieCount}kCal`}
-              name="Calories"
-            />
-            <KeyData
-              icon={Proteines}
-              quantity={`${data.keyData.proteinCount}g`}
-              name="Proteines"
-            />
-            <KeyData
-              icon={Glucides}
-              quantity={`${data.keyData.carbohydrateCount}g`}
-              name="Glucides"
-            />
-            <KeyData
-              icon={Lipides}
-              quantity={`${data.keyData.lipidCount}g`}
-              name="Lipides"
-            />
-          </KeyDatas>
-        </Container>
-      </ContainerRow>
-    </UserPage>
+    <div>
+      {isLoading ? (
+        <div>En cours de chargement...</div>
+      ) : data ? (
+        <UserPage>
+          <UserInfo name={data.userInfos.firstName} />
+          <ContainerRow>
+            <Container>
+              <BarCharts />
+              <BottomChart>
+                <UserAverageSessions />
+                <UserPerformance />
+                <ScoreChart data={data} />
+              </BottomChart>
+            </Container>
+            <Container>
+              <KeyDatas>
+                <KeyData
+                  icon={Calories}
+                  quantity={`${data.keyData.calorieCount}kCal`}
+                  name="Calories"
+                />
+                <KeyData
+                  icon={Proteines}
+                  quantity={`${data.keyData.proteinCount}g`}
+                  name="Proteines"
+                />
+                <KeyData
+                  icon={Glucides}
+                  quantity={`${data.keyData.carbohydrateCount}g`}
+                  name="Glucides"
+                />
+                <KeyData
+                  icon={Lipides}
+                  quantity={`${data.keyData.lipidCount}g`}
+                  name="Lipides"
+                />
+              </KeyDatas>
+            </Container>
+          </ContainerRow>
+        </UserPage>
+      ) : (
+        <div>Les données n'ont pas été récupérées.</div>
+      )}
+    </div>
   );
 }
