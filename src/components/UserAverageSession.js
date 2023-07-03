@@ -16,22 +16,18 @@ import SessionsToolType from "./SessionsToolType.js";
  * Render a LineChart with user average sessions Data
  * @return {JSX}
  */
-
 export default function UserAverageSessions() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [error, setError] = useState(false)
   const { id } = useParams();
 
   useEffect(() => {
-    const data = async () => {
-      const request = await API.getUserAverageSessions(id);
-      if (!request) return alert("data error");
-      const formatData = request.sessions
-
-      setData(formatData);
-    };
-    data();
+    API.getUserAverageSessions(id)
+      .then(response => setData(response.sessions))
+      .catch(() => setError(true))
   }, [id]);
-  if (data.length === 0) return null;
+
+  if (error) return <section>Oups il y a eu un problème</section>
 
   return (
     <Container className="charts">

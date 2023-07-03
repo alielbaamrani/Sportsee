@@ -27,23 +27,22 @@ import ActivityToolType from "./ActivityToolType";
  * @return {JSX}
  */
 export default function BarCharts() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [error, setError] = useState(false)
   const { id } = useParams();
 
   useEffect(() => {
-    const data = async () => {
-      const request = await API.getUserActivity(id);
-      if (!request) return alert("data error");
-
-      setData(request.data.sessions);
-    };
-    data();
+    API.getUserActivity(id)
+      .then(response => setData(response.data.sessions))
+      .catch(() => setError(true))
   }, [id]);
-  if (data.length === 0) return null;
+
   //format data.day
   for (let i = 0; i < data.length; i++) {
     data[i].day = i + 1;
   }
+
+  if (error) return <section>Oups il y a eu un problème</section>
 
   return (
     <Wrapper>

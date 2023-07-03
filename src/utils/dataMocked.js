@@ -276,7 +276,7 @@ export const getUserInfos = async id => {
     console.log("getUserInfos:", res);
     return { data: res };
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 
@@ -291,7 +291,7 @@ export const getUserActivity = async id => {
     const res = USER_ACTIVITY.find(el => el.userId == id);
     return { data: res };
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 
@@ -307,7 +307,7 @@ export const getUserAverageSessions = async id => {
     // return { data: res };
     return new AverageSessions({ data: res });
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 
@@ -322,6 +322,6 @@ export const getUserPerformance = async id => {
     const res = USER_PERFORMANCE.find(el => el.userId == id);
     return new Performance({ data: res });
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };

@@ -18,19 +18,17 @@ import {
  */
 
 export default function UserPerformance() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [error, setError] = useState(false)
   const { id } = useParams();
 
   useEffect(() => {
-    const data = async () => {
-      const request = await API.getUserPerformance(id);
-      if (!request) return alert("data error");
-      const formatData = request.kind;
-      setData(formatData);
-    };
-    data();
+    API.getUserPerformance(id)
+      .then(response => setData(response.kind))
+      .catch(() => setError(true))
   }, [id]);
-  if (data.length === 0) return null;
+
+  if (error) return <section>Oups il y a eu un problème</section>
 
   return (
     <Container>

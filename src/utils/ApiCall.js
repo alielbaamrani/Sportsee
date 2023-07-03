@@ -16,7 +16,7 @@ export const getUserActivity = async id => {
     const res = await api.get(`http://localhost:3000/user/${id}/activity`);
     return res.data;
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 /**
@@ -30,7 +30,7 @@ export const getUserInfos = async id => {
     const res = await api.get(`http://localhost:3000/user/${id}`);
     return res.data;
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 
@@ -45,7 +45,7 @@ export const getUserPerformance = async id => {
     const res = await api.get(`http://localhost:3000/user/${id}/performance`);
     return new Performance(res.data);
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };
 /**
@@ -61,6 +61,6 @@ export const getUserAverageSessions = async id => {
     );
     return new AverageSessions(res.data);
   } catch (e) {
-    console.log(e);
+    throw e
   }
 };

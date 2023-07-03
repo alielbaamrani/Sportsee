@@ -10,6 +10,8 @@ import {
   KeyDatas,
   Container,
   ContainerRow,
+  LoadingSpinner,
+  Center,
 } from "../styles/userPage";
 import ScoreChart from "../components/ScoreChart";
 import UserAverageSessions from "../components/UserAverageSession";
@@ -22,31 +24,30 @@ import Proteines from "../assets/proteines-icon.svg";
 
 export default function User() {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [error, setError] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
-    fetchData();
+    API.getUserInfos(id)
+      .then(response => setData(response.data))
+      .catch(() => setError(true))
+      .finally(() => setIsLoading(false));
   }, [id]);
 
-  const fetchData = async () => {
-    try {
-      const data = async () => {
-        const response = await API.getUserInfos(id);
-        setData(response.data);
-        setIsLoading(false);
-      };
-      data();
-    } catch (error) {
-      console.log("Erreur lors de la récupération des données :", error);
-      setIsLoading(false);
-    }
-  };
+  if (error)
+    return (
+      <Center>
+        <section>Oups il y a eu un problème lors de la recuperation de données </section>
+      </Center>
+    );
 
   return (
     <div>
       {isLoading ? (
-        <div>En cours de chargement...</div>
+        <Center>
+          <LoadingSpinner />
+        </Center>
       ) : data ? (
         <UserPage>
           <UserInfo name={data.userInfos.firstName} />
@@ -86,7 +87,9 @@ export default function User() {
           </ContainerRow>
         </UserPage>
       ) : (
-        <div>Les données n'ont pas été récupérées.</div>
+        <Center>
+          <div>Les données n'ont pas été récupérées.</div>
+        </Center>
       )}
     </div>
   );
