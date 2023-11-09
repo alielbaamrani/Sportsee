@@ -1,4 +1,4 @@
-# SportSee
+# SportSee - Développez un tableau de bord d'analytics avec React
 
 SportSee - Projet 9 - OpenClassRoom
 
