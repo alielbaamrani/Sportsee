@@ -22,7 +22,7 @@
   "scripts": {
     "mock": "cross-env PORT=8082 REACT_APP_ENVIRONMENT='mock' react-scripts start",
     "start": "cross-env PORT=8081 REACT_APP_ENVIRONMENT='mock' react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts  build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docs": "jsdoc -c jsdoc.conf.json"

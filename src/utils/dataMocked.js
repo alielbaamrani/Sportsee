@@ -1,7 +1,9 @@
+/** @format */
+
 import AverageSessions from "../models/AverageSessions";
 import Performance from "../models/Performance";
 
-/* eslint-disable eqeqeq */
+/* eslint-disable  */
 const USER_MAIN_DATA = [
   {
     id: 12,
@@ -270,13 +272,13 @@ const USER_PERFORMANCE = [
  * @param {number} id User id
  * @returns {object} Response
  */
-export const getUserInfos = async id => {
+export const getUserInfos = async (id) => {
   try {
-    const res = USER_MAIN_DATA.find(el => el.id == id);
+    const res = USER_MAIN_DATA.find((el) => el.id == id);
     console.log("getUserInfos:", res);
     return { data: res };
   } catch (e) {
-    throw e
+    throw e;
   }
 };
 
@@ -286,12 +288,12 @@ export const getUserInfos = async id => {
  * @param {number} id User id
  * @returns {object} Response
  */
-export const getUserActivity = async id => {
+export const getUserActivity = async (id) => {
   try {
-    const res = USER_ACTIVITY.find(el => el.userId == id);
+    const res = USER_ACTIVITY.find((el) => el.userId == id);
     return { data: res };
   } catch (e) {
-    throw e
+    throw e;
   }
 };
 
@@ -301,13 +303,13 @@ export const getUserActivity = async id => {
  * @param {number} id User id
  * @returns {object} Response
  */
-export const getUserAverageSessions = async id => {
+export const getUserAverageSessions = async (id) => {
   try {
-    const res = USER_AVERAGE_SESSIONS.find(el => el.userId == id);
+    const res = USER_AVERAGE_SESSIONS.find((el) => el.userId == id);
     // return { data: res };
     return new AverageSessions({ data: res });
   } catch (e) {
-    throw e
+    throw e;
   }
 };
 
@@ -317,11 +319,11 @@ export const getUserAverageSessions = async id => {
  * @param {number} id User id
  * @returns {object} Response
  */
-export const getUserPerformance = async id => {
+export const getUserPerformance = async (id) => {
   try {
-    const res = USER_PERFORMANCE.find(el => el.userId == id);
+    const res = USER_PERFORMANCE.find((el) => el.userId == id);
     return new Performance({ data: res });
   } catch (e) {
-    throw e
+    throw e;
   }
 };

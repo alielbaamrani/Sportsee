@@ -1,6 +1,8 @@
-import * as api from './ApiCall'
-import * as mock from './dataMocked'
+/** @format */
 
-export const API = process.env.REACT_APP_ENVIRONMENT === 'mock' ? mock : api
+// import * as api from './ApiCall'
+import * as mock from "./dataMocked";
 
+// export const API = process.env.REACT_APP_ENVIRONMENT === "mock" ? mock : api;
 
+export const API = mock;
